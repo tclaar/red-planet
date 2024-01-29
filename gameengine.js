@@ -22,6 +22,7 @@ class GameEngine {
     };
 
     init(ctx) {
+        ctx.imageSmoothingEnabled = false;
         this.ctx = ctx;
         this.startInput();
         this.timer = new Timer();
@@ -54,6 +55,7 @@ class GameEngine {
                 console.log("CLICK", getXandY(e));
             }
             this.click = getXandY(e);
+            ASTRONAUT.setDest(this.click.x, this.click.y);
         });
 
         this.ctx.canvas.addEventListener("wheel", e => {
@@ -82,7 +84,9 @@ class GameEngine {
 
     draw() {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
-        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        //this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        this.ctx.fillStyle = "#4d220f";
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // Draw latest things first
         for (let i = this.entities.length - 1; i >= 0; i--) {
