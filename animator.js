@@ -12,7 +12,7 @@ class Animator {
             this.elapsedTime = 0;
         }
         
-        ctx.drawImage(this.spritesheet, this.currentFrame() * this.width, this.yStart, 
+        ctx.drawImage(this.spritesheet, this.xStart + this.currentFrame() * this.width, this.yStart, 
             this.width, this.height, x, y, this.width * scale, 
             this.height * scale);
         

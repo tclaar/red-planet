@@ -39,7 +39,6 @@ class Astronaut {
     }
 
     draw() {
-        console.log(this.animations[this.facing][this.state]);
         this.animations[this.facing][this.state].drawFrame(GAME.clockTick, GAME.ctx, this.x, this.y, 3)
     }
 
@@ -51,7 +50,7 @@ class Astronaut {
         this.animations["left"]["idle"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 0, 0, 16, 16, 1, 1);
         this.animations["right"]["idle"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 0, 16, 16, 16, 1, 1);
 
-        this.animations["left"]["walking"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 16, 0, 16, 16, 4, 1/5);
-        this.animations["right"]["walking"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 16, 16, 16, 16, 4, 1/5);
+        this.animations["left"]["walking"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 16, 0, 16, 16, 4, 0.16);
+        this.animations["right"]["walking"] = new Animator(ASSET_MANAGER.getAsset("./astronaut.png"), 16, 16, 16, 16, 4, 0.16);
     }
 }
