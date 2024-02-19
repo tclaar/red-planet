@@ -32,6 +32,12 @@ const rgba = (r, g, b, a) => `rgba(${r}, ${g}, ${b}, ${a})`;
  */
 const hsl = (h, s, l) => `hsl(${h}, ${s}%, ${l}%)`;
 
+const isPointInArea = (point, areaPos, areaSize) => {
+    const bottomRight = Vector.add(areaPos, areaSize);
+    return point.x > areaPos.x && point.y > areaPos.y 
+        && point.x < bottomRight.x && point.y < bottomRight.y;
+}
+
 /** Creates an alias for requestAnimationFrame for backwards compatibility */
 window.requestAnimFrame = (() => {
     return window.requestAnimationFrame ||
@@ -48,12 +54,3 @@ window.requestAnimFrame = (() => {
             window.setTimeout(callback, 1000 / 60);
         });
 })();
-
-/**
- * Returns distance from two points
- * @param {Number} p1, p2 Two objects with x and y coordinates
- * @returns Distance between the two points
- */
-const getDistance = (p1, p2) => {
-    return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
-};
