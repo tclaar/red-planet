@@ -6,6 +6,8 @@ const COLONY = new Colony();
 
 ASSET_MANAGER.queueDownload("./images/astronaut.png");
 ASSET_MANAGER.queueDownload("./images/tile.png");
+ASSET_MANAGER.queueDownload("./images/rock.png");
+ASSET_MANAGER.queueDownload("./images/martian.png");
 
 CTX.imageSmoothingEnabled = false;
 

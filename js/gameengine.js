@@ -93,7 +93,7 @@ class GameEngine {
         CTX.clearRect(0, 0, CTX.canvas.width, CTX.canvas.height);
 
         // Draw latest things first
-        for (let i = this.entities.length - 1; i >= 0; i--) {
+        for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].draw();
         }
     };

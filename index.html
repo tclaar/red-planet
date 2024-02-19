@@ -18,11 +18,26 @@
 
     <script type="text/javascript" src="./js/entities/astronaut.js"></script>
     <script type="text/javascript" src="./js/entities/ground.js"></script>
+    <script type="text/javascript" src="./js/entities/laser.js"></script>
+    <script type="text/javascript" src="./js/entities/martian.js"></script>
     <script type="text/javascript" src="./js/entities/rock.js"></script>
     <script type="text/javascript" src="./js/entities/selector.js"></script>
 </head>
 <body>
     <canvas id="game-world" width="1024" height="768" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
     <script type="text/javascript" src="./js/main.js"></script>
+    <p>
+        <ul>
+            <li>Left click the astronaut to select him.</li>
+            <li>
+                With the astronaut selected:
+                <ul>
+                    <li>Right click on empty space to have him walk there.</li>
+                    <li>Right click on rocks to make him mine them.</li>
+                </ul>
+            </li>
+            <li>Avoid martians.</li>
+        </ul>
+    </p>
 </body>
 </html>

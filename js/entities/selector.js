@@ -27,8 +27,9 @@ class Selector {
 
     setSelectionTarget(target) {
         this.selection.forEach((colonist) => {
-            colonist.setTarget(target);
+            colonist.setTarget(target, COLONY.buildingAt(target));
         });
+       
     }
 
     update() {

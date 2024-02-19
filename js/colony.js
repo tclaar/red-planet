@@ -4,6 +4,7 @@ class Colony {
         this.enemies = [];
         this.items = [];
         this.buildings = new Array(Colony.SIZE).fill(0).map(() => []);
+        this.ore = 0;
     };
 
     static get SIZE() {
@@ -22,31 +23,36 @@ class Colony {
     }
 
     init() {
-
-        GAME.addEntity(SELECTOR);
-
-        const astronaut = new Astronaut(new Vector(10, 10));
-        GAME.addEntity(new Rock(2, 0, 2, 2));
-        GAME.addEntity(new Rock(7, 6, 2, 2));
-        GAME.addEntity(new Rock(5, 3, 4, 1));
-        GAME.addEntity(new Rock(3, 7, 1, 1));
-        GAME.addEntity(astronaut);
-        this.colonists.push(astronaut);
-
         for (let i = 0; i < Colony.SIZE; i++) {
             for (let j = 0; j < Colony.SIZE; j++) {
                 GAME.addEntity(new Ground(new Vector(i, j)));
             }
         }
+
+        const astronaut = new Astronaut(new Vector(10, 10));
+        GAME.addEntity(new Rock(new Vector(2, 0)));
+        GAME.addEntity(new Rock(new Vector(5, 5)));
+        GAME.addEntity(new Rock(new Vector(3, 2)));
+        GAME.addEntity(new Rock(new Vector(7, 3)));
+        GAME.addEntity(astronaut);
+        GAME.addEntity(new Martian(new Vector(500, 500)));
+        this.colonists.push(astronaut);
+
+        GAME.addEntity(SELECTOR);
     }
 
-    addBuilding(building) {
-        const x = building.cellX;
-        const y = building.cellY;
-        for (let i = x; i < x + building.sizeX; i++) {
-            for (let j = y; j < y + building.sizeY; j++) {
+    addBuilding(building, size) {
+        const cell = Vector.worldToCellSpace(building.pos);
+        for (let i = cell.x; i < cell.x + size.x; i++) {
+            for (let j = cell.y; j < cell.y + size.y; j++) {
                 this.buildings[i][j] = building;
             }
         }
+    }
+
+    buildingAt(pos) {
+        const cell = Vector.worldToCellSpace(pos);
+        console.log(this.buildings[cell.x][cell.y]);
+        return this.buildings[cell.x][cell.y];
     }
 }

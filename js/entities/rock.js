@@ -1,15 +1,27 @@
 class Rock {
-    constructor(cellX, cellY, sizeX, sizeY) {
-        this.cellX = cellX;
-        this.cellY = cellY;
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+    constructor(cell) {
+        this.pos = Vector.cellToWorldSpace(cell);
+        this.size = Vector.multiply(Rock.SIZE, 2);
 
-        COLONY.addBuilding(this);
+        this.animator = new Animator(
+            Rock.SPRITESHEET, 
+            new Vector(0, 0), 
+            Rock.SIZE,
+            1, 1);
+
+        COLONY.addBuilding(this, Rock.CELL_SIZE);
     }
 
     static get SPRITESHEET() {
         return "./images/rock.png";
+    }
+
+    static get SIZE() {
+        return new Vector(32, 32);
+    }
+
+    static get CELL_SIZE() {
+        return new Vector(1, 1);
     }
 
     update() {
@@ -17,8 +29,6 @@ class Rock {
     }
 
     draw() {
-        CTX.fillStyle = "#33160a";
-        CTX.fillRect(this.cellX * Colony.CELL_SIZE, this.cellY * Colony.CELL_SIZE, 
-            this.sizeX * Colony.CELL_SIZE, this.sizeY * Colony.CELL_SIZE);
+        this.animator.drawFrame(this.pos, 2);
     }
 }

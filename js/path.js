@@ -54,7 +54,7 @@ class Path {
         const pq = new Path.PriorityQueue();
         for (let i = 0; i < Colony.SIZE; i++) {
             for (let j = 0; j < Colony.SIZE; j++) {
-                if (!COLONY.buildings[i][j]) {
+                if (i === endCell.x && j === endCell.y || !COLONY.buildings[i][j]) {
                     const node = {cell: new Vector(i, j), prev: null, len: Infinity};
                     paths[i][j] = node;
                     pq.insert(node);
@@ -84,6 +84,9 @@ class Path {
         }
 
         const path = new Path();
+        if (COLONY.buildings[curr.cell.x][curr.cell.y]) {
+            curr = curr.prev;
+        }
         while (curr) {
             path.prepend(Colony.randCoordInCell(curr.cell, Astronaut.SCALED_SIZE));
             curr = curr.prev;
